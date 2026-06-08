@@ -1,6 +1,7 @@
 package com.mechwild.mechs.client;
 
 import com.mechwild.mechs.MechwildMechs;
+import com.mechwild.mechs.entity.RaptorMechEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;
@@ -13,111 +14,151 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
-public class RaptorMechModel<T extends Entity> extends HierarchicalModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MechwildMechs.MODID, "raptor_mech"), "main");
+public class RaptorMechModel<T extends RaptorMechEntity> extends HierarchicalModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MechwildMechs.MODID, "mech_variants"), "main");
 
     private final ModelPart root;
-    private final ModelPart head;
-    private final ModelPart leftLeg;
-    private final ModelPart rightLeg;
-    private final ModelPart leftArm;
-    private final ModelPart rightArm;
-    private final ModelPart tail;
-    private final ModelPart leftStabiliser;
-    private final ModelPart rightStabiliser;
+    private final ModelPart raptor;
+    private final ModelPart beetle;
+    private final ModelPart stag;
+    private final ModelPart wolf;
+    private final ModelPart hawk;
+    private final ModelPart chimera;
 
     public RaptorMechModel(ModelPart root) {
         this.root = root;
-        this.head = root.getChild("head");
-        this.leftLeg = root.getChild("left_leg");
-        this.rightLeg = root.getChild("right_leg");
-        this.leftArm = root.getChild("left_arm");
-        this.rightArm = root.getChild("right_arm");
-        this.tail = root.getChild("tail");
-        this.leftStabiliser = root.getChild("left_stabiliser");
-        this.rightStabiliser = root.getChild("right_stabiliser");
+        this.raptor = root.getChild("raptor");
+        this.beetle = root.getChild("beetle");
+        this.stag = root.getChild("stag");
+        this.wolf = root.getChild("wolf");
+        this.hawk = root.getChild("hawk");
+        this.chimera = root.getChild("chimera");
     }
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
 
-        // v0.9: Small-class bipedal raptor mech shell. The pilot camera sits high inside the head cockpit.
-        root.addOrReplaceChild("body", CubeListBuilder.create()
-                .texOffs(0, 0).addBox(-11.0F, -23.0F, -16.0F, 22.0F, 20.0F, 32.0F)      // black internal torso
-                .texOffs(0, 53).addBox(-12.0F, -26.0F, -13.0F, 24.0F, 7.0F, 22.0F)       // red upper armour/cockpit shell
-                .texOffs(76, 0).addBox(-7.0F, -28.0F, -9.0F, 14.0F, 4.0F, 12.0F)         // raised cockpit canopy
-                .texOffs(76, 18).addBox(-4.0F, -29.0F, -12.0F, 8.0F, 3.0F, 5.0F)         // green forward sensor glass
-                .texOffs(0, 84).addBox(-14.0F, -18.0F, -8.0F, 4.0F, 10.0F, 16.0F)        // left side armour
-                .texOffs(0, 84).mirror().addBox(10.0F, -18.0F, -8.0F, 4.0F, 10.0F, 16.0F),// right side armour
-                PartPose.offset(0.0F, 16.0F, 0.0F));
+        // Raptor Striker: small-class bipedal infantry mech, high head cockpit, long balancing tail.
+        root.addOrReplaceChild("raptor", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-8, -20, -10, 16, 15, 24)
+                .texOffs(0, 42).addBox(-10, -23, -8, 20, 6, 18)
+                .texOffs(70, 0).addBox(-7, -31, -28, 14, 11, 15)
+                .texOffs(70, 28).addBox(-5, -27, -36, 10, 5, 10)
+                .texOffs(70, 46).addBox(-6, -34, -25, 12, 5, 11)
+                .texOffs(112, 0).addBox(-3, -28, -37, 6, 2, 1)
+                .texOffs(0, 72).addBox(-4, -5, 3, 8, 20, 8)
+                .texOffs(28, 72).addBox(-13, 12, -6, 12, 5, 17)
+                .texOffs(0, 72).mirror().addBox(-4, -5, 3, 8, 20, 8)
+                .texOffs(28, 72).mirror().addBox(1, 12, -6, 12, 5, 17)
+                .texOffs(72, 72).addBox(-2, -8, -24, 4, 13, 4)
+                .texOffs(72, 72).mirror().addBox(-2, -8, -24, 4, 13, 4)
+                .texOffs(96, 72).addBox(-3, -10, 13, 6, 7, 38)
+                .texOffs(96, 118).addBox(-5, -13, 42, 10, 10, 10)
+                .texOffs(132, 22).addBox(-16, -24, 0, 8, 4, 16)
+                .texOffs(132, 22).mirror().addBox(8, -24, 0, 8, 4, 16),
+                PartPose.offset(0, 14, 0));
 
-        root.addOrReplaceChild("head", CubeListBuilder.create()
-                .texOffs(40, 84).addBox(-7.0F, -10.0F, -14.0F, 14.0F, 11.0F, 15.0F)      // angular head
-                .texOffs(96, 34).addBox(-5.0F, -8.0F, -19.0F, 10.0F, 5.0F, 7.0F)         // snout
-                .texOffs(96, 48).addBox(-6.0F, -12.0F, -7.0F, 12.0F, 4.0F, 8.0F)         // red brow plate
-                .texOffs(100, 62).addBox(-5.5F, -5.5F, -19.5F, 3.0F, 2.0F, 1.0F)         // left green eye
-                .texOffs(100, 62).mirror().addBox(2.5F, -5.5F, -19.5F, 3.0F, 2.0F, 1.0F),// right green eye
-                PartPose.offset(0.0F, 2.0F, -22.0F));
+        // Beetle Bulwark: compact heavy mining tank with horn drill and broad armoured shell.
+        root.addOrReplaceChild("beetle", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-16, -18, -18, 32, 16, 36)
+                .texOffs(0, 54).addBox(-18, -24, -14, 36, 8, 28)
+                .texOffs(90, 0).addBox(-10, -22, -30, 20, 12, 14)
+                .texOffs(92, 28).addBox(-4, -20, -44, 8, 7, 18)
+                .texOffs(132, 0).addBox(-2, -19, -58, 4, 5, 17)
+                .texOffs(0, 96).addBox(-18, -3, -12, 7, 14, 9)
+                .texOffs(0, 96).mirror().addBox(11, -3, -12, 7, 14, 9)
+                .texOffs(0, 96).addBox(-18, -3, 6, 7, 14, 9)
+                .texOffs(0, 96).mirror().addBox(11, -3, 6, 7, 14, 9)
+                .texOffs(44, 96).addBox(-21, -15, -4, 6, 11, 18)
+                .texOffs(44, 96).mirror().addBox(15, -15, -4, 6, 11, 18),
+                PartPose.offset(0, 16, 0));
 
-        root.addOrReplaceChild("left_leg", CubeListBuilder.create()
-                .texOffs(42, 112).addBox(-3.5F, 0.0F, -3.5F, 7.0F, 16.0F, 7.0F)
-                .texOffs(70, 112).addBox(-4.5F, 12.0F, -8.0F, 9.0F, 4.0F, 11.0F)         // clawed foot
-                .texOffs(108, 80).addBox(-5.0F, 3.0F, -4.0F, 10.0F, 5.0F, 8.0F),        // red knee armour
-                PartPose.offset(8.0F, 6.0F, 8.0F));
+        // Stag Grovekeeper: taller utility unit with antler sensor arrays and farming arms.
+        root.addOrReplaceChild("stag", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-10, -22, -12, 20, 18, 26)
+                .texOffs(0, 48).addBox(-12, -26, -10, 24, 7, 20)
+                .texOffs(72, 0).addBox(-8, -36, -28, 16, 12, 15)
+                .texOffs(72, 30).addBox(-5, -32, -37, 10, 5, 11)
+                .texOffs(116, 0).addBox(-18, -42, -26, 16, 4, 4)
+                .texOffs(116, 0).mirror().addBox(2, -42, -26, 16, 4, 4)
+                .texOffs(0, 82).addBox(-5, -5, 4, 7, 22, 7)
+                .texOffs(0, 82).mirror().addBox(-2, -5, 4, 7, 22, 7)
+                .texOffs(32, 82).addBox(-14, 13, -4, 11, 5, 16)
+                .texOffs(32, 82).mirror().addBox(3, 13, -4, 11, 5, 16)
+                .texOffs(90, 82).addBox(-14, -15, -11, 5, 15, 8)
+                .texOffs(90, 82).mirror().addBox(9, -15, -11, 5, 15, 8)
+                .texOffs(120, 42).addBox(-3, -10, 14, 6, 6, 27),
+                PartPose.offset(0, 14, 0));
 
-        root.addOrReplaceChild("right_leg", CubeListBuilder.create()
-                .texOffs(42, 112).mirror().addBox(-3.5F, 0.0F, -3.5F, 7.0F, 16.0F, 7.0F)
-                .texOffs(70, 112).mirror().addBox(-4.5F, 12.0F, -8.0F, 9.0F, 4.0F, 11.0F)
-                .texOffs(108, 80).mirror().addBox(-5.0F, 3.0F, -4.0F, 10.0F, 5.0F, 8.0F),
-                PartPose.offset(-8.0F, 6.0F, 8.0F));
+        // Wolf Nightfang: fast medium-low predator silhouette with forward shoulders and blade jaws.
+        root.addOrReplaceChild("wolf", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-10, -19, -15, 20, 14, 30)
+                .texOffs(0, 46).addBox(-12, -23, -13, 24, 6, 20)
+                .texOffs(74, 0).addBox(-8, -29, -31, 16, 10, 16)
+                .texOffs(74, 28).addBox(-5, -25, -43, 10, 5, 13)
+                .texOffs(112, 24).addBox(-3, -22, -48, 6, 4, 8)
+                .texOffs(0, 76).addBox(-6, -4, -8, 8, 18, 8)
+                .texOffs(0, 76).mirror().addBox(-2, -4, -8, 8, 18, 8)
+                .texOffs(32, 76).addBox(-12, 11, -13, 10, 5, 16)
+                .texOffs(32, 76).mirror().addBox(2, 11, -13, 10, 5, 16)
+                .texOffs(88, 76).addBox(-7, -1, 8, 5, 16, 8)
+                .texOffs(88, 76).mirror().addBox(2, -1, 8, 5, 16, 8)
+                .texOffs(120, 52).addBox(-3, -11, 15, 6, 5, 31),
+                PartPose.offset(0, 15, 0));
 
-        root.addOrReplaceChild("left_arm", CubeListBuilder.create()
-                .texOffs(112, 96).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F)
-                .texOffs(100, 116).addBox(-2.5F, 6.0F, -6.0F, 5.0F, 3.0F, 8.0F)    // compact blade forearm
-                .texOffs(118, 132).addBox(-1.5F, 8.0F, -9.0F, 3.0F, 2.0F, 5.0F),   // claw/talon point
-                PartPose.offset(10.0F, 5.0F, -10.0F));
+        // Hawk Stormwing: light aerial frame with tall cockpit neck, wings and rear thrusters.
+        root.addOrReplaceChild("hawk", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-8, -21, -11, 16, 14, 24)
+                .texOffs(0, 42).addBox(-10, -25, -8, 20, 5, 17)
+                .texOffs(68, 0).addBox(-7, -35, -29, 14, 10, 15)
+                .texOffs(68, 28).addBox(-4, -31, -39, 8, 5, 12)
+                .texOffs(108, 0).addBox(-30, -25, -2, 28, 4, 28)
+                .texOffs(108, 0).mirror().addBox(2, -25, -2, 28, 4, 28)
+                .texOffs(0, 72).addBox(-4, -4, 3, 7, 19, 7)
+                .texOffs(0, 72).mirror().addBox(-3, -4, 3, 7, 19, 7)
+                .texOffs(32, 72).addBox(-11, 12, -5, 10, 4, 15)
+                .texOffs(32, 72).mirror().addBox(1, 12, -5, 10, 4, 15)
+                .texOffs(110, 46).addBox(-5, -12, 13, 10, 8, 17)
+                .texOffs(126, 78).addBox(-4, -10, 28, 8, 6, 12),
+                PartPose.offset(0, 13, 0));
 
-        root.addOrReplaceChild("right_arm", CubeListBuilder.create()
-                .texOffs(112, 96).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F)
-                .texOffs(100, 116).mirror().addBox(-2.5F, 6.0F, -6.0F, 5.0F, 3.0F, 8.0F)
-                .texOffs(118, 132).mirror().addBox(-1.5F, 8.0F, -9.0F, 3.0F, 2.0F, 5.0F),
-                PartPose.offset(-10.0F, 5.0F, -10.0F));
+        // Chimera Titan: late prototype hybrid; raptor head, beetle core, wolf claws, hawk fins.
+        root.addOrReplaceChild("chimera", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-14, -24, -17, 28, 20, 36)
+                .texOffs(0, 60).addBox(-16, -29, -14, 32, 8, 28)
+                .texOffs(90, 0).addBox(-9, -39, -34, 18, 13, 18)
+                .texOffs(90, 34).addBox(-6, -34, -46, 12, 6, 14)
+                .texOffs(132, 0).addBox(-4, -31, -55, 8, 5, 10)
+                .texOffs(0, 92).addBox(-6, -5, 4, 9, 24, 9)
+                .texOffs(0, 92).mirror().addBox(-3, -5, 4, 9, 24, 9)
+                .texOffs(38, 92).addBox(-15, 15, -7, 13, 6, 20)
+                .texOffs(38, 92).mirror().addBox(2, 15, -7, 13, 6, 20)
+                .texOffs(110, 64).addBox(-34, -26, 1, 24, 5, 25)
+                .texOffs(110, 64).mirror().addBox(10, -26, 1, 24, 5, 25)
+                .texOffs(116, 102).addBox(-4, -13, 19, 8, 8, 42),
+                PartPose.offset(0, 10, 0));
 
-        root.addOrReplaceChild("tail", CubeListBuilder.create()
-                .texOffs(0, 112).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 30.0F)
-                .texOffs(76, 66).addBox(-4.0F, -5.0F, 20.0F, 8.0F, 8.0F, 8.0F),
-                PartPose.offset(0.0F, 6.0F, 16.0F));
-
-        root.addOrReplaceChild("left_stabiliser", CubeListBuilder.create()
-                .texOffs(108, 66).addBox(0.0F, -2.0F, -4.0F, 16.0F, 4.0F, 8.0F),
-                PartPose.offset(8.0F, -6.0F, 3.0F));
-
-        root.addOrReplaceChild("right_stabiliser", CubeListBuilder.create()
-                .texOffs(108, 66).mirror().addBox(-16.0F, -2.0F, -4.0F, 16.0F, 4.0F, 8.0F),
-                PartPose.offset(-8.0F, -6.0F, 3.0F));
-
-        return LayerDefinition.create(mesh, 160, 160);
+        return LayerDefinition.create(mesh, 192, 192);
     }
 
     @Override
-    public ModelPart root() {
-        return root;
-    }
+    public ModelPart root() { return root; }
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        head.yRot = netHeadYaw * ((float) Math.PI / 180F) * 0.75F;
-        head.xRot = headPitch * 0.35F * ((float) Math.PI / 180F);
-        rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 0.65F * limbSwingAmount;
-        leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.65F * limbSwingAmount;
-        rightArm.xRot = -0.35F + Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.12F * limbSwingAmount;
-        leftArm.xRot = -0.35F + Mth.cos(limbSwing * 0.6662F) * 0.12F * limbSwingAmount;
-        tail.yRot = Mth.sin(ageInTicks * 0.10F) * 0.12F;
-        leftStabiliser.zRot = Mth.sin(ageInTicks * 0.06F) * 0.035F;
-        rightStabiliser.zRot = -leftStabiliser.zRot;
+        String family = entity.getMechFamily();
+        raptor.visible = family.equals("raptor");
+        beetle.visible = family.equals("beetle");
+        stag.visible = family.equals("stag");
+        wolf.visible = family.equals("wolf");
+        hawk.visible = family.equals("hawk");
+        chimera.visible = family.equals("chimera");
+
+        float bob = Mth.sin(ageInTicks * 0.08F) * 0.018F;
+        raptor.xRot = bob; beetle.xRot = bob * 0.35F; stag.xRot = bob; wolf.xRot = bob; hawk.xRot = bob * 1.25F; chimera.xRot = bob * 0.6F;
+        raptor.yRot = netHeadYaw * 0.002F; wolf.yRot = netHeadYaw * 0.0015F; hawk.yRot = netHeadYaw * 0.002F;
     }
 
     @Override

@@ -105,6 +105,20 @@ public class RaptorMechEntity extends Mob {
         this.setCustomName(Component.literal(displayNameForFrame() + " Prototype"));
     }
 
+
+    public String getMechFamily() {
+        if (frameType.contains("beetle")) return "beetle";
+        if (frameType.contains("stag")) return "stag";
+        if (frameType.contains("wolf")) return "wolf";
+        if (frameType.contains("hawk")) return "hawk";
+        if (frameType.contains("chimera")) return "chimera";
+        return "raptor";
+    }
+
+    public String getFrameTypeForClient() {
+        return frameType;
+    }
+
     private String displayNameForFrame() {
         if (frameType.contains("beetle")) return "Beetle Bulwark Mech";
         if (frameType.contains("stag")) return "Stag Grovekeeper Mech";
@@ -217,7 +231,11 @@ public class RaptorMechEntity extends Mob {
             double yaw = Math.toRadians(this.getYRot());
             double forwardX = -Math.sin(yaw) * 1.15D;
             double forwardZ = Math.cos(yaw) * 1.15D;
-            moveFunction.accept(passenger, this.getX() + forwardX, this.getY() + 3.65D, this.getZ() + forwardZ);
+            double cockpitHeight = getMechFamily().equals("beetle") ? 3.25D : getMechFamily().equals("hawk") ? 4.10D : getMechFamily().equals("chimera") ? 4.35D : 3.85D;
+            double cockpitForward = getMechFamily().equals("beetle") ? 0.45D : getMechFamily().equals("stag") ? 0.85D : 1.20D;
+            forwardX = -Math.sin(yaw) * cockpitForward;
+            forwardZ = Math.cos(yaw) * cockpitForward;
+            moveFunction.accept(passenger, this.getX() + forwardX, this.getY() + cockpitHeight, this.getZ() + forwardZ);
         }
     }
 
