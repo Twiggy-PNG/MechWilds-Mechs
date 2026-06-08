@@ -143,6 +143,7 @@ public class RaptorMechEntity extends Mob {
         player.startRiding(this, true);
         cockpitPilotUuid = player.getUUID();
         player.setInvisible(true);
+        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
         return InteractionResult.CONSUME;
     }
 
@@ -170,6 +171,7 @@ public class RaptorMechEntity extends Mob {
             if (this.getControllingPassenger() instanceof Player pilot) {
                 cockpitPilotUuid = pilot.getUUID();
                 pilot.setInvisible(true);
+                pilot.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
                 pilot.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 240, 0, false, false, true));
             } else if (cockpitPilotUuid != null) {
                 Player formerPilot = this.level().getPlayerByUUID(cockpitPilotUuid);
@@ -184,9 +186,9 @@ public class RaptorMechEntity extends Mob {
 
     @Override
     protected void positionRider(Entity passenger, Entity.MoveFunction moveFunction) {
-        // Lower the rider into the mech body so the interaction reads as cockpit entry, not sitting on top.
+        // Drop the rider below the visible cockpit shell. Minecraft still uses riding internally, but the pilot now reads as enclosed inside the frame.
         if (this.hasPassenger(passenger)) {
-            moveFunction.accept(passenger, this.getX(), this.getY() + 0.35D, this.getZ());
+            moveFunction.accept(passenger, this.getX(), this.getY() - 0.85D, this.getZ());
         }
     }
 
@@ -262,6 +264,11 @@ public class RaptorMechEntity extends Mob {
         this.hurtMarked = true;
         player.displayClientMessage(Component.literal(frameType.contains("wolf") ? "Wolf Strike dash engaged." : frameType.contains("hawk") ? "Hawk Burst glide engaged." : "Raptor Dash engaged."), true);
         abilityCooldownTicks = 90;
+    }
+
+
+    public boolean shouldRiderSit() {
+        return false;
     }
 
     @Override

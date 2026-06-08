@@ -2,7 +2,7 @@
 	id: "v07_cockpit_entry"
 	group: "mechwild"
 	order_index: 9
-	title: "v0.7 - Cockpit Entry"
+	title: "v0.7.2 - Cockpit Entry"
 	icon: "mechwildmechs:mech_deployment_core"
 	quests: [
 		{
