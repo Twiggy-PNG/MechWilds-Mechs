@@ -28,8 +28,10 @@ import java.util.UUID;
 public class RaptorMechEntity extends Mob {
     private UUID ownerUuid;
     private UUID cockpitPilotUuid;
+    private UUID pendingEntryPilotUuid;
     private String frameType = "raptor";
     private int abilityCooldownTicks = 0;
+    private int cockpitEntryTicks = 0;
 
     public RaptorMechEntity(EntityType<? extends Mob> type, Level level) {
         super(type, level);
@@ -40,8 +42,8 @@ public class RaptorMechEntity extends Mob {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 60.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.32D)
+                .add(Attributes.MAX_HEALTH, 82.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.29D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
                 .add(Attributes.ARMOR, 6.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.35D);
@@ -58,20 +60,21 @@ public class RaptorMechEntity extends Mob {
     }
 
     private void applyFrameStats() {
-        double speed = 0.32D;
-        double health = 60.0D;
+        double speed = 0.29D;
+        double health = 82.0D;
         double armour = 6.0D;
         double damage = 6.0D;
         double knockback = 0.35D;
 
         if (frameType.contains("raptor")) {
-            speed = 0.42D;
+            speed = 0.36D;
+            health = 90.0D;
             damage = 8.0D;
             knockback = 0.45D;
         }
         if (frameType.contains("beetle")) {
-            speed = 0.24D;
-            health = 105.0D;
+            speed = 0.21D;
+            health = 125.0D;
             armour = 14.0D;
             damage = 7.0D;
             knockback = 0.85D;
@@ -82,13 +85,13 @@ public class RaptorMechEntity extends Mob {
             damage = 6.5D;
         }
         if (frameType.contains("wolf")) {
-            speed = 0.37D;
+            speed = 0.33D;
             damage = 10.0D;
             knockback = 0.50D;
         }
         if (frameType.contains("hawk")) {
-            speed = 0.45D;
-            health = 52.0D;
+            speed = 0.38D;
+            health = 70.0D;
             armour = 5.0D;
             knockback = 0.25D;
         }
@@ -139,12 +142,15 @@ public class RaptorMechEntity extends Mob {
             return InteractionResult.CONSUME;
         }
 
-        player.displayClientMessage(Component.literal("Entering " + displayNameForFrame() + " cockpit..."), true);
-        player.startRiding(this, true);
-        cockpitPilotUuid = player.getUUID();
-        player.setInvisible(true);
-        player.getPersistentData().putBoolean("mw_piloting_mech", true);
-        player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
+        if (this.isVehicle()) {
+            player.displayClientMessage(Component.literal("Cockpit is already occupied."), true);
+            return InteractionResult.CONSUME;
+        }
+
+        pendingEntryPilotUuid = player.getUUID();
+        cockpitEntryTicks = 45;
+        player.displayClientMessage(Component.literal("Climbing access struts into the head cockpit..."), true);
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 4, false, false, false));
         return InteractionResult.CONSUME;
     }
 
@@ -160,6 +166,23 @@ public class RaptorMechEntity extends Mob {
 
         if (abilityCooldownTicks > 0) {
             abilityCooldownTicks--;
+        }
+
+        if (!this.level().isClientSide && cockpitEntryTicks > 0) {
+            cockpitEntryTicks--;
+            if (cockpitEntryTicks == 0 && pendingEntryPilotUuid != null) {
+                Player pendingPilot = this.level().getPlayerByUUID(pendingEntryPilotUuid);
+                if (pendingPilot != null && pendingPilot.isAlive() && pendingPilot.distanceTo(this) < 7.0F && !this.isVehicle()) {
+                    pendingPilot.startRiding(this, true);
+                    cockpitPilotUuid = pendingPilot.getUUID();
+                    pendingPilot.setInvisible(true);
+                    pendingPilot.getPersistentData().putBoolean("mw_piloting_mech", true);
+                    pendingPilot.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
+                    pendingPilot.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 240, 0, false, false, true));
+                    pendingPilot.displayClientMessage(Component.literal("Head cockpit sealed. Neural screen feed online."), true);
+                }
+                pendingEntryPilotUuid = null;
+            }
         }
 
         if (frameType.contains("hawk") && this.isVehicle() && !this.onGround() && this.getDeltaMovement().y < -0.12D) {
@@ -189,9 +212,12 @@ public class RaptorMechEntity extends Mob {
 
     @Override
     protected void positionRider(Entity passenger, Entity.MoveFunction moveFunction) {
-        // Raise the rider/camera into the upper cockpit shell. The pilot is hidden and the HUD overlay sells the interior view.
+        // v0.9: Place the hidden pilot/camera high and slightly forward, approximating a head cockpit.
         if (this.hasPassenger(passenger)) {
-            moveFunction.accept(passenger, this.getX(), this.getY() + 1.45D, this.getZ());
+            double yaw = Math.toRadians(this.getYRot());
+            double forwardX = -Math.sin(yaw) * 1.15D;
+            double forwardZ = Math.cos(yaw) * 1.15D;
+            moveFunction.accept(passenger, this.getX() + forwardX, this.getY() + 3.65D, this.getZ() + forwardZ);
         }
     }
 

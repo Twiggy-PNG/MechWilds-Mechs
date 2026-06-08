@@ -68,7 +68,7 @@ public class ClientForgeEvents {
         gui.fill(44, h - 48, 110, h - 45, green);
         gui.fill(w - 110, h - 48, w - 44, h - 45, green);
 
-        gui.drawString(mc.font, Component.literal("MECHLINK // COCKPIT VIEW"), 34, 7, 0x55FF99, false);
-        gui.drawString(mc.font, Component.literal("CORE ONLINE"), w - 104, 7, 0x55FF99, false);
+        gui.drawString(mc.font, Component.literal("MECHLINK // HEAD COCKPIT"), 34, 7, 0x55FF99, false);
+        gui.drawString(mc.font, Component.literal("CAMERA FEED"), w - 104, 7, 0x55FF99, false);
     }
 }

@@ -33,8 +33,7 @@ public class MechDeploymentCoreItem extends Item {
                     mech.moveTo(player.getX(), player.getY() + 0.1D, player.getZ(), player.getYRot(), 0.0F);
                     mech.configureFromPilot(player);
                     serverLevel.addFreshEntity(mech);
-                    player.startRiding(mech, true);
-                    player.displayClientMessage(Component.literal("Mech deployed. Cockpit sync established."), true);
+                    player.displayClientMessage(Component.literal("Mech deployed. Right-click the lower hull to climb into the head cockpit."), true);
                     if (!player.getAbilities().instabuild) {
                         stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
                     }

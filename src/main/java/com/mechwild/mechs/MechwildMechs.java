@@ -23,7 +23,7 @@ public class MechwildMechs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
     public static final RegistryObject<Item> MECH_DEPLOYMENT_CORE = ITEMS.register("mech_deployment_core", () -> new MechDeploymentCoreItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<EntityType<RaptorMechEntity>> RAPTOR_MECH = ENTITY_TYPES.register("raptor_mech", () -> EntityType.Builder.of(RaptorMechEntity::new, MobCategory.CREATURE).sized(2.8F, 3.25F).clientTrackingRange(10).build("raptor_mech"));
+    public static final RegistryObject<EntityType<RaptorMechEntity>> RAPTOR_MECH = ENTITY_TYPES.register("raptor_mech", () -> EntityType.Builder.of(RaptorMechEntity::new, MobCategory.CREATURE).sized(3.4F, 4.75F).clientTrackingRange(12).build("raptor_mech"));
     public MechwildMechs() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ITEMS.register(bus); ENTITY_TYPES.register(bus); bus.addListener(this::entityAttributes); bus.addListener(this::creativeTab); MinecraftForge.EVENT_BUS.register(this);

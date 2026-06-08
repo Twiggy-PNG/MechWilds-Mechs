@@ -44,7 +44,7 @@ public class RaptorMechModel<T extends Entity> extends HierarchicalModel<T> {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
 
-        // v0.8: Bigger dinosaur/beast-mech shell. The pilot camera sits inside the upper body/cockpit.
+        // v0.9: Small-class bipedal raptor mech shell. The pilot camera sits high inside the head cockpit.
         root.addOrReplaceChild("body", CubeListBuilder.create()
                 .texOffs(0, 0).addBox(-11.0F, -23.0F, -16.0F, 22.0F, 20.0F, 32.0F)      // black internal torso
                 .texOffs(0, 53).addBox(-12.0F, -26.0F, -13.0F, 24.0F, 7.0F, 22.0F)       // red upper armour/cockpit shell
@@ -60,34 +60,36 @@ public class RaptorMechModel<T extends Entity> extends HierarchicalModel<T> {
                 .texOffs(96, 48).addBox(-6.0F, -12.0F, -7.0F, 12.0F, 4.0F, 8.0F)         // red brow plate
                 .texOffs(100, 62).addBox(-5.5F, -5.5F, -19.5F, 3.0F, 2.0F, 1.0F)         // left green eye
                 .texOffs(100, 62).mirror().addBox(2.5F, -5.5F, -19.5F, 3.0F, 2.0F, 1.0F),// right green eye
-                PartPose.offset(0.0F, 5.0F, -17.0F));
+                PartPose.offset(0.0F, 2.0F, -22.0F));
 
         root.addOrReplaceChild("left_leg", CubeListBuilder.create()
                 .texOffs(42, 112).addBox(-3.5F, 0.0F, -3.5F, 7.0F, 16.0F, 7.0F)
                 .texOffs(70, 112).addBox(-4.5F, 12.0F, -8.0F, 9.0F, 4.0F, 11.0F)         // clawed foot
                 .texOffs(108, 80).addBox(-5.0F, 3.0F, -4.0F, 10.0F, 5.0F, 8.0F),        // red knee armour
-                PartPose.offset(8.0F, 8.0F, 7.0F));
+                PartPose.offset(8.0F, 6.0F, 8.0F));
 
         root.addOrReplaceChild("right_leg", CubeListBuilder.create()
                 .texOffs(42, 112).mirror().addBox(-3.5F, 0.0F, -3.5F, 7.0F, 16.0F, 7.0F)
                 .texOffs(70, 112).mirror().addBox(-4.5F, 12.0F, -8.0F, 9.0F, 4.0F, 11.0F)
                 .texOffs(108, 80).mirror().addBox(-5.0F, 3.0F, -4.0F, 10.0F, 5.0F, 8.0F),
-                PartPose.offset(-8.0F, 8.0F, 7.0F));
+                PartPose.offset(-8.0F, 6.0F, 8.0F));
 
         root.addOrReplaceChild("left_arm", CubeListBuilder.create()
-                .texOffs(112, 96).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 13.0F, 6.0F)
-                .texOffs(100, 116).addBox(-3.5F, 10.0F, -6.0F, 7.0F, 4.0F, 9.0F),
-                PartPose.offset(9.0F, 11.0F, -8.0F));
+                .texOffs(112, 96).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F)
+                .texOffs(100, 116).addBox(-2.5F, 6.0F, -6.0F, 5.0F, 3.0F, 8.0F)    // compact blade forearm
+                .texOffs(118, 132).addBox(-1.5F, 8.0F, -9.0F, 3.0F, 2.0F, 5.0F),   // claw/talon point
+                PartPose.offset(10.0F, 5.0F, -10.0F));
 
         root.addOrReplaceChild("right_arm", CubeListBuilder.create()
-                .texOffs(112, 96).mirror().addBox(-3.0F, 0.0F, -3.0F, 6.0F, 13.0F, 6.0F)
-                .texOffs(100, 116).mirror().addBox(-3.5F, 10.0F, -6.0F, 7.0F, 4.0F, 9.0F),
-                PartPose.offset(-9.0F, 11.0F, -8.0F));
+                .texOffs(112, 96).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 8.0F, 4.0F)
+                .texOffs(100, 116).mirror().addBox(-2.5F, 6.0F, -6.0F, 5.0F, 3.0F, 8.0F)
+                .texOffs(118, 132).mirror().addBox(-1.5F, 8.0F, -9.0F, 3.0F, 2.0F, 5.0F),
+                PartPose.offset(-10.0F, 5.0F, -10.0F));
 
         root.addOrReplaceChild("tail", CubeListBuilder.create()
                 .texOffs(0, 112).addBox(-3.0F, -3.0F, 0.0F, 6.0F, 6.0F, 30.0F)
                 .texOffs(76, 66).addBox(-4.0F, -5.0F, 20.0F, 8.0F, 8.0F, 8.0F),
-                PartPose.offset(0.0F, 7.0F, 15.0F));
+                PartPose.offset(0.0F, 6.0F, 16.0F));
 
         root.addOrReplaceChild("left_stabiliser", CubeListBuilder.create()
                 .texOffs(108, 66).addBox(0.0F, -2.0F, -4.0F, 16.0F, 4.0F, 8.0F),
@@ -111,8 +113,8 @@ public class RaptorMechModel<T extends Entity> extends HierarchicalModel<T> {
         head.xRot = headPitch * 0.35F * ((float) Math.PI / 180F);
         rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 0.65F * limbSwingAmount;
         leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.65F * limbSwingAmount;
-        rightArm.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.45F * limbSwingAmount;
-        leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 0.45F * limbSwingAmount;
+        rightArm.xRot = -0.35F + Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 0.12F * limbSwingAmount;
+        leftArm.xRot = -0.35F + Mth.cos(limbSwing * 0.6662F) * 0.12F * limbSwingAmount;
         tail.yRot = Mth.sin(ageInTicks * 0.10F) * 0.12F;
         leftStabiliser.zRot = Mth.sin(ageInTicks * 0.06F) * 0.035F;
         rightStabiliser.zRot = -leftStabiliser.zRot;

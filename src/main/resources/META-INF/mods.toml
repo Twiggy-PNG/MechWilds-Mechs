@@ -3,9 +3,9 @@ loaderVersion="[47,)"
 license="All Rights Reserved"
 [[mods]]
 modId="mechwildmechs"
-version="0.8.0"
+version="0.9.0"
 displayName="Mechwild Mechs"
-description="v0.8 visual cockpit pass. Adds a larger red/black raptor mech shell, higher cockpit camera feel, pilot hand hiding, and green first-person cockpit HUD overlay."
+description="v0.9 scale and head-entry pass. Adds small-class mech scale, bipedal raptor stance, a climb-to-cockpit entry sequence, and a higher head cockpit camera position."
 [[dependencies.mechwildmechs]]
 modId="forge"
 mandatory=true
