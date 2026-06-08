@@ -1,0 +1,44 @@
+{
+  title: "Chapter 2: Choose Your Frame"
+  icon: "kubejs:proto_raptor_frame"
+  subtitle: "Every pilot chooses a machine-beast lineage."
+  default_quest_shape: "rsquare"
+  quests: [
+    {
+      title: "Raptor Lineage"
+      icon: "kubejs:proto_raptor_frame"
+      x: 0.0d
+      y: -1.5d
+      description: ["Fast, aggressive and agile. The Raptor path suits scouts and melee pilots."]
+      tasks: [{ type: "item", item: "kubejs:proto_raptor_frame", count: 1L }]
+      rewards: [{ type: "item", item: "kubejs:fang_blade_array", count: 1L }]
+    }
+    {
+      title: "Beetle Lineage"
+      icon: "kubejs:proto_beetle_frame"
+      x: 0.0d
+      y: 0.0d
+      description: ["Heavy, durable and built to excavate. The Beetle path suits miners and tanks."]
+      tasks: [{ type: "item", item: "kubejs:proto_beetle_frame", count: 1L }]
+      rewards: [{ type: "item", item: "kubejs:drill_claws_tier_1", count: 1L }]
+    }
+    {
+      title: "Stag Lineage"
+      icon: "kubejs:proto_stag_frame"
+      x: 0.0d
+      y: 1.5d
+      description: ["Supportive, practical and built for the land. The Stag path suits farmers and builders."]
+      tasks: [{ type: "item", item: "kubejs:proto_stag_frame", count: 1L }]
+      rewards: [{ type: "item", item: "kubejs:harvest_talons", count: 1L }]
+    }
+    {
+      title: "Wolf Lineage"
+      icon: "kubejs:proto_wolf_frame"
+      x: 0.0d
+      y: 3.0d
+      description: ["A hunter frame tuned for combat, tracking and boss fights."]
+      tasks: [{ type: "item", item: "kubejs:proto_wolf_frame", count: 1L }]
+      rewards: [{ type: "item", item: "kubejs:reactive_plating", count: 1L }]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  title: "Chapter 4: Wild Mech Hunts"
+  icon: "kubejs:wild_core_shard"
+  subtitle: "Rogue machine-beasts roam the world. Salvage their cores."
+  default_quest_shape: "rsquare"
+  quests: [
+    { title: "Recover a Wild Core Shard", icon: "kubejs:wild_core_shard", x: 0.0d, y: 0.0d, description: ["Defeat dangerous enemies to recover Wild Core Shards. Later these will come from custom rogue mech bosses."], tasks: [{ type: "item", item: "kubejs:wild_core_shard", count: 1L }], rewards: [{ type: "item", item: "kubejs:hawk_frame_blueprint", count: 1L }] }
+    { title: "Stabilise the Core", icon: "kubejs:stable_mech_core", x: 1.5d, y: 0.0d, description: ["A stable core supports advanced modules and flight progression."], tasks: [{ type: "item", item: "kubejs:stable_mech_core", count: 1L }], rewards: [{ type: "item", item: "kubejs:glide_wing_module", count: 1L }] }
+    { title: "Apex Core", icon: "kubejs:apex_mech_core", x: 3.0d, y: 0.0d, description: ["The Apex Core is the beginning of ascended machine-beast engineering."], tasks: [{ type: "item", item: "kubejs:apex_mech_core", count: 1L }], rewards: [{ type: "item", item: "kubejs:chimera_frame_blueprint", count: 1L }] }
+  ]
+}

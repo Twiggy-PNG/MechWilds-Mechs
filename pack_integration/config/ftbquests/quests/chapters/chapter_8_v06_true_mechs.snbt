@@ -1,0 +1,17 @@
+{
+	id: "v06_true_mechs"
+	group: "mechwild"
+	order_index: 8
+	title: "v0.6 - True Mech Prototype"
+	icon: "kubejs:raptor_striker_frame"
+	quests: [
+		{
+			id: "build_deployment_core"
+			title: "Build the Mech Deployment Core"
+			description: ["The Java mech mod adds the first real rideable beast-mech entity. Once the mechwildmechs jar is installed, craft the Deployment Core and right-click it in an open area."]
+			icon: "kubejs:stable_mech_core"
+			tasks: [{id: "has_core", type: "item", item: "kubejs:stable_mech_core"}]
+			rewards: [{id: "signal_reward", type: "item", item: "kubejs:mech_salvage", count: 8}]
+		}
+	]
+}

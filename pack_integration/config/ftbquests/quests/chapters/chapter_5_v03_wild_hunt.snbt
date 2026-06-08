@@ -1,0 +1,39 @@
+{
+	id: "mechwild_v03_wild_hunt"
+	group: "mechwild_main"
+	order_index: 5
+	filename: "chapter_5_v03_wild_hunt"
+	title: "v0.3 - Wild Hunt Prototype"
+	icon: "kubejs:rogue_signal_flare"
+	quests: [
+		{
+			id: "craft_rogue_signal_flare"
+			x: 0.0d
+			y: 0.0d
+			title: "Craft a Rogue Signal Flare"
+			description: ["The first hunt system is now active. Craft a Rogue Signal Flare, then right-click it in a safe open area to summon Rustjaw Raptor."]
+			tasks: [{ id: "have_flare", type: "item", item: "kubejs:rogue_signal_flare", count: 1L }]
+			rewards: [{ id: "reward_arrows", type: "item", item: "minecraft:arrow", count: 16L }]
+		}
+		{
+			id: "recover_wild_core_shard"
+			x: 2.0d
+			y: 0.0d
+			title: "Recover a Wild Core Shard"
+			description: ["Defeat the summoned rogue machine-beast. The boss should drop advanced components including Wild Core Shards and Ancient Servos."]
+			dependencies: ["craft_rogue_signal_flare"]
+			tasks: [{ id: "have_shard", type: "item", item: "kubejs:wild_core_shard", count: 1L }]
+			rewards: [{ id: "reward_servo", type: "item", item: "kubejs:ancient_servo", count: 1L }]
+		}
+		{
+			id: "equip_dash_core"
+			x: 4.0d
+			y: 0.0d
+			title: "Recover the Dash Core"
+			description: ["Rustjaw Raptor can drop a Dash Core. Right-click it to trigger a movement burst. This is the first step toward proper active mech abilities."]
+			dependencies: ["recover_wild_core_shard"]
+			tasks: [{ id: "have_dash", type: "item", item: "kubejs:dash_core", count: 1L }]
+			rewards: [{ id: "reward_xp", type: "xp", xp: 150 }]
+		}
+	]
+}

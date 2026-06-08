@@ -1,0 +1,6 @@
+{
+  version: 12
+  default_quest_shape: "rsquare"
+  default_hide_dependency_lines: false
+  chapter_groups: []
+}

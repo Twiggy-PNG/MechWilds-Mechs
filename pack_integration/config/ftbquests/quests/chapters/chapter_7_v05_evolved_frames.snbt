@@ -1,0 +1,47 @@
+{
+  title: "v0.5 - Evolved Frames",
+  icon: "kubejs:frame_evolution_circuit",
+  group: "Mechwild Ascension",
+  quests: [
+    {
+      id: "v05_assembly_rig",
+      title: "Build the Mech Assembly Rig",
+      subtitle: "The first step beyond Proto Frames.",
+      description: ["Craft the Mech Assembly Rig. This represents the workstation used to evolve a Proto Frame into a stronger beast-mech lineage."],
+      x: 0.0d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:mech_assembly_rig" }],
+      rewards: [{ type: "item", item: "kubejs:mech_salvage", count: 8 }]
+    },
+    {
+      id: "v05_evolution_circuit",
+      title: "Create an Evolution Circuit",
+      subtitle: "Stable core logic for stronger frames.",
+      description: ["Craft a Frame Evolution Circuit from Stable Mech Core parts, optics and ancient servo hardware."],
+      x: 1.5d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:frame_evolution_circuit" }],
+      rewards: [{ type: "item", item: "kubejs:damaged_optic", count: 3 }]
+    },
+    {
+      id: "v05_lineage_part",
+      title: "Forge a Lineage Matrix",
+      subtitle: "Choose the identity of the evolved mech.",
+      description: ["Craft one lineage component. Predator Optic Cluster pushes Raptor/Wolf, Heavy Plating Bundle pushes Beetle, Verdant Utility Matrix pushes Stag, and Storm Flight Matrix pushes Hawk."],
+      x: 3.0d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:predator_optic_cluster" }],
+      rewards: [{ type: "item", item: "kubejs:ancient_servo", count: 1 }]
+    },
+    {
+      id: "v05_first_evolved_frame",
+      title: "Build Your First Evolved Frame",
+      subtitle: "The mech finally starts to feel individual.",
+      description: ["Craft an evolved frame such as the Raptor Striker Frame, then right-click it to calibrate it as your active mech loadout."],
+      x: 4.5d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:raptor_striker_frame" }],
+      rewards: [{ type: "item", item: "kubejs:rogue_signal_flare", count: 1 }]
+    }
+  ]
+}

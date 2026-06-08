@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SAS",
+    "CRC",
+    "SDS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "minecraft:ender_pearl"
+    },
+    "R": {
+      "item": "minecraft:diamond"
+    },
+    "D": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "mechwildmechs:mech_deployment_core"
+  }
+}

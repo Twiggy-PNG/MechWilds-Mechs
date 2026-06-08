@@ -1,0 +1,51 @@
+{
+  title: "Chapter 1: The Broken Core"
+  icon: "kubejs:proto_mech_core"
+  subtitle: "Rebuild the heart of your first machine-beast."
+  default_quest_shape: "rsquare"
+  quests: [
+    {
+      title: "Crash Site Recovery"
+      icon: "minecraft:copper_ingot"
+      x: 0.0d
+      y: 0.0d
+      description: ["You wake beside a ruined machine-beast frame. Recover basic conductive materials."]
+      tasks: [
+        { type: "item", item: "minecraft:copper_ingot", count: 16L }
+        { type: "item", item: "minecraft:redstone", count: 8L }
+      ]
+      rewards: [
+        { type: "item", item: "kubejs:ancient_alloy_scrap", count: 4L }
+      ]
+    }
+    {
+      title: "Charged Servo"
+      icon: "kubejs:charged_servo"
+      x: 1.5d
+      y: 0.0d
+      description: ["Servos are the first moving joints of any mech frame."]
+      tasks: [
+        { type: "item", item: "kubejs:charged_servo", count: 1L }
+      ]
+      rewards: [
+        { type: "item", item: "kubejs:mech_diagnostic_chip", count: 1L }
+      ]
+    }
+    {
+      title: "Proto Mech Core"
+      icon: "kubejs:proto_mech_core"
+      x: 3.0d
+      y: 0.0d
+      description: ["The heart is unstable, but alive enough to power a starter frame."]
+      tasks: [
+        { type: "item", item: "kubejs:proto_mech_core", count: 1L }
+      ]
+      rewards: [
+        { type: "item", item: "kubejs:raptor_frame_blueprint", count: 1L }
+        { type: "item", item: "kubejs:beetle_frame_blueprint", count: 1L }
+        { type: "item", item: "kubejs:stag_frame_blueprint", count: 1L }
+        { type: "item", item: "kubejs:wolf_frame_blueprint", count: 1L }
+      ]
+    }
+  ]
+}

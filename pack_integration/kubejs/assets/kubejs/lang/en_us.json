@@ -1,0 +1,23 @@
+{
+  "item.kubejs.ancient_alloy_scrap": "Ancient Alloy Scrap",
+  "item.kubejs.charged_servo": "Charged Servo",
+  "item.kubejs.bio_mech_sinew": "Bio-Mech Sinew",
+  "item.kubejs.mech_diagnostic_chip": "Mech Diagnostic Chip",
+  "item.kubejs.wild_core_shard": "Wild Core Shard",
+  "item.kubejs.proto_mech_core": "Proto Mech Core",
+  "item.kubejs.stable_mech_core": "Stable Mech Core",
+  "item.kubejs.apex_mech_core": "Apex Mech Core",
+  "item.kubejs.raptor_frame_blueprint": "Raptor Frame Blueprint",
+  "item.kubejs.beetle_frame_blueprint": "Beetle Frame Blueprint",
+  "item.kubejs.stag_frame_blueprint": "Stag Frame Blueprint",
+  "item.kubejs.wolf_frame_blueprint": "Wolf Frame Blueprint",
+  "item.kubejs.hawk_frame_blueprint": "Hawk Frame Blueprint",
+  "item.kubejs.chimera_frame_blueprint": "Chimera Frame Blueprint",
+  "item.kubejs.rustforged_scrap": "Rustforged Scrap",
+  "item.kubejs.mech_salvage": "Mech Salvage",
+  "item.kubejs.ancient_servo": "Ancient Servo",
+  "item.kubejs.damaged_optic": "Damaged Optic",
+  "item.kubejs.wild_core_fragment": "Wild Core Fragment",
+  "item.kubejs.synthetic_muscle_fibre": "Synthetic Muscle Fibre",
+  "item.kubejs.rogue_signal_flare": "Rogue Signal Flare"
+}

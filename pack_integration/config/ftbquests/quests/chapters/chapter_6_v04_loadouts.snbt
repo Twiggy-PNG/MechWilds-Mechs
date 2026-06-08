@@ -1,0 +1,52 @@
+{
+  title: "v0.4 - Frame Loadouts",
+  icon: "kubejs:mech_loadout_calibrator",
+  group: "Mechwild Ascension",
+  quests: [
+    {
+      id: "v04_calibrator",
+      title: "Build a Loadout Calibrator",
+      subtitle: "Your mech now remembers its active frame and sockets.",
+      description: ["Craft the Mech Loadout Calibrator. Right-click it to print your active frame and installed modules in chat."],
+      x: 0.0d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:mech_loadout_calibrator" }],
+      rewards: [{ type: "item", item: "kubejs:module_socket_chip", count: 2 }]
+    },
+    {
+      id: "v04_active_frame",
+      title: "Calibrate an Active Frame",
+      subtitle: "Right-click any Proto Frame in your hand.",
+      description: ["Right-click a Proto Raptor, Beetle, Stag, Wolf, Hawk or Chimera Frame. The effects now come from your saved loadout first, rather than loose items only."],
+      x: 1.5d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:proto_raptor_frame" }],
+      rewards: [{ type: "item", item: "kubejs:frame_reset_key" }]
+    },
+    {
+      id: "v04_socket_chips",
+      title: "Build Socket Chips",
+      subtitle: "Prepare modules for specialised loadouts.",
+      description: ["Craft socket chips for mining, combat, utility and mobility. These are the start of proper mech build individuality."],
+      x: 3.0d,
+      y: 0.0d,
+      tasks: [
+        { type: "item", item: "kubejs:mining_socket_chip" },
+        { type: "item", item: "kubejs:combat_socket_chip" },
+        { type: "item", item: "kubejs:utility_socket_chip" },
+        { type: "item", item: "kubejs:mobility_socket_chip" }
+      ],
+      rewards: [{ type: "item", item: "kubejs:mech_salvage", count: 8 }]
+    },
+    {
+      id: "v04_install_modules",
+      title: "Install Your First Modules",
+      subtitle: "Right-click modules to bind them to your active frame.",
+      description: ["With a frame calibrated, right-click Drill Claws, Fang Blades, Harvest Talons, Hydraulic Servos, or another module. The Calibrator will show what is installed."],
+      x: 4.5d,
+      y: 0.0d,
+      tasks: [{ type: "item", item: "kubejs:drill_claws_tier_1" }],
+      rewards: [{ type: "item", item: "kubejs:damaged_optic", count: 2 }]
+    }
+  ]
+}

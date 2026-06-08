@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mechwildmechs:item/mech_deployment_core"
+  }
+}

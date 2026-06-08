@@ -1,0 +1,37 @@
+{
+  id: "mechwild_v02_testing"
+  title: "v0.2 Salvage Loop"
+  icon: "kubejs:rustforged_scrap"
+  group: "mechwild"
+  order_index: 0
+  filename: "chapter_0_v02_testing"
+  quests: [
+    {
+      id: "collect_rustforged_scrap"
+      title: "Recover Rustforged Scrap"
+      subtitle: "Hostile mobs now drop early mech salvage."
+      x: 0.0d
+      y: 0.0d
+      tasks: [{ id: "get_scrap", type: "item", item: "kubejs:rustforged_scrap", count: 4L }]
+      rewards: [{ id: "reward_salvage", type: "item", item: "kubejs:mech_salvage", count: 2L }]
+    }
+    {
+      id: "craft_proto_core_v02"
+      title: "Stabilise the Proto Core"
+      subtitle: "Use salvage, servos and diagnostics to create your first core."
+      x: 2.0d
+      y: 0.0d
+      tasks: [{ id: "get_core", type: "item", item: "kubejs:proto_mech_core", count: 1L }]
+      rewards: [{ id: "reward_signal", type: "item", item: "kubejs:rogue_signal_flare", count: 1L }]
+    }
+    {
+      id: "choose_first_frame_v02"
+      title: "Choose Your First Frame"
+      subtitle: "Craft a Proto Raptor Frame first. The other frames are also available through recipes."
+      x: 4.0d
+      y: 0.0d
+      tasks: [{ id: "any_frame", type: "item", item: "kubejs:proto_raptor_frame", count: 1L }]
+      rewards: [{ id: "reward_servo", type: "item", item: "kubejs:ancient_servo", count: 1L }]
+    }
+  ]
+}

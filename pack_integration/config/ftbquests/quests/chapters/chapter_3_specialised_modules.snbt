@@ -1,0 +1,13 @@
+{
+  title: "Chapter 3: Specialised Modules"
+  icon: "kubejs:mech_diagnostic_chip"
+  subtitle: "Build the modules that make your mech yours."
+  default_quest_shape: "rsquare"
+  quests: [
+    { title: "Mining Identity", icon: "kubejs:drill_claws_tier_1", x: 0.0d, y: 0.0d, description: ["Drill claws define the excavation look."], tasks: [{ type: "item", item: "kubejs:drill_claws_tier_1", count: 1L }], rewards: [{ type: "item", item: "kubejs:resonance_scanner", count: 1L }] }
+    { title: "Combat Identity", icon: "kubejs:shock_lance_module", x: 1.5d, y: 0.0d, description: ["Predator weapons add blades, lances, mounts and plating."], tasks: [{ type: "item", item: "kubejs:fang_blade_array", count: 1L }], rewards: [{ type: "item", item: "kubejs:shock_lance_module", count: 1L }] }
+    { title: "Farming Identity", icon: "kubejs:harvest_talons", x: 3.0d, y: 0.0d, description: ["Utility frames use talons, sprayers and seeding modules."], tasks: [{ type: "item", item: "kubejs:harvest_talons", count: 1L }], rewards: [{ type: "item", item: "kubejs:seeder_module", count: 1L }] }
+    { title: "Movement Identity", icon: "kubejs:hydraulic_leg_servos", x: 4.5d, y: 0.0d, description: ["Speed and jump parts visibly reshape the limb silhouette."], tasks: [{ type: "item", item: "kubejs:hydraulic_leg_servos", count: 1L }], rewards: [{ type: "item", item: "kubejs:sprint_servo_bundle", count: 1L }] }
+    { title: "Automation Identity", icon: "kubejs:cargo_link", x: 6.0d, y: 0.0d, description: ["Cargo and logistics modules turn the mech into a mobile workstation."], tasks: [{ type: "item", item: "kubejs:cargo_link", count: 1L }], rewards: [{ type: "item", item: "kubejs:autosmelt_core", count: 1L }] }
+  ]
+}

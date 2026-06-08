@@ -1,0 +1,22 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+group = 'com.mechwild'
+version = '0.6.0'
+
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client { workingDirectory project.file('run'); mods { mechwildmechs { source sourceSets.main } } }
+        server { workingDirectory project.file('run'); mods { mechwildmechs { source sourceSets.main } } }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
+}
+
+jar { manifest { attributes(['Specification-Title':'Mechwild Mechs','Specification-Version':'0.6.0','Implementation-Version': project.version]) } }
