@@ -143,6 +143,7 @@ public class RaptorMechEntity extends Mob {
         player.startRiding(this, true);
         cockpitPilotUuid = player.getUUID();
         player.setInvisible(true);
+        player.getPersistentData().putBoolean("mw_piloting_mech", true);
         player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
         return InteractionResult.CONSUME;
     }
@@ -173,10 +174,12 @@ public class RaptorMechEntity extends Mob {
                 pilot.setInvisible(true);
                 pilot.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 240, 0, false, false, false));
                 pilot.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 240, 0, false, false, true));
+                pilot.getPersistentData().putBoolean("mw_piloting_mech", true);
             } else if (cockpitPilotUuid != null) {
                 Player formerPilot = this.level().getPlayerByUUID(cockpitPilotUuid);
                 if (formerPilot != null) {
                     formerPilot.setInvisible(false);
+                    formerPilot.getPersistentData().putBoolean("mw_piloting_mech", false);
                     formerPilot.displayClientMessage(Component.literal("Exited mech cockpit."), true);
                 }
                 cockpitPilotUuid = null;
@@ -186,9 +189,9 @@ public class RaptorMechEntity extends Mob {
 
     @Override
     protected void positionRider(Entity passenger, Entity.MoveFunction moveFunction) {
-        // Drop the rider below the visible cockpit shell. Minecraft still uses riding internally, but the pilot now reads as enclosed inside the frame.
+        // Raise the rider/camera into the upper cockpit shell. The pilot is hidden and the HUD overlay sells the interior view.
         if (this.hasPassenger(passenger)) {
-            moveFunction.accept(passenger, this.getX(), this.getY() - 0.85D, this.getZ());
+            moveFunction.accept(passenger, this.getX(), this.getY() + 1.45D, this.getZ());
         }
     }
 
@@ -292,6 +295,7 @@ public class RaptorMechEntity extends Mob {
             Player pilot = this.level().getPlayerByUUID(cockpitPilotUuid);
             if (pilot != null) {
                 pilot.setInvisible(false);
+                pilot.getPersistentData().putBoolean("mw_piloting_mech", false);
                 pilot.displayClientMessage(Component.literal("Mech destroyed. Emergency cockpit release triggered."), true);
             }
         }

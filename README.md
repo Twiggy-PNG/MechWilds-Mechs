@@ -1,34 +1,19 @@
-# Mechwild Mechs - Forge 1.20.1
+# Mechwild Mechs v0.8 - Visual Cockpit Pass
 
-This repository contains the true custom mod prototype for **Mechwild Ascension v0.7.2.2**.
+This GitHub-ready repo builds the Mechwild Mechs Forge 1.20.1 custom mech mod.
 
-## What GitHub will do
+## v0.8 focus
+- Larger Raptor Mech entity scale
+- More angular red/black mechanical raptor model
+- Green cockpit/HUD glass texture direction
+- First-person cockpit overlay while piloting
+- Player hand/item rendering hidden while piloting
+- Pilot camera/position raised into the cockpit shell
 
-Every time you upload/push this repository, GitHub Actions will:
+## Build
+Push this repo to GitHub. The workflow in `.github/workflows/build-mod.yml` builds the jar and uploads the artifact `mechwild-mechs-v0.8-jar`.
 
-1. Install Java 17.
-2. Install Gradle 8.10.
-3. Build the Forge 1.20.1 mod.
-4. Upload the finished `.jar` as a downloadable artifact.
-
-## How to get the jar after upload
-
-1. Open the GitHub repository.
-2. Click the **Actions** tab.
-3. Click the newest **Build Mechwild Mechs Mod** run.
-4. Wait until it shows a green tick.
-5. Scroll to **Artifacts**.
-6. Download **mechwild-mechs-v0.7.2.2-jar**.
-7. Open the downloaded zip and copy the `.jar` into your CurseForge instance's `mods` folder.
-
-## Pack files
-
-The `pack_integration` folder contains the matching `config` and `kubejs` folders for your modpack instance.
-Copy those into your CurseForge `MechMod` folder the same way as earlier updates.
-
-## Current prototype
-
-- Forge 1.20.1
-- Custom item: Mech Deployment Core
-- Custom rideable entity: Raptor Mech Prototype
-- Basic loadout-aware frame naming/stats
+## Install
+1. Remove older `mechwild-mechs-*.jar` files from your CurseForge `mods` folder.
+2. Add the new v0.8 jar.
+3. Copy `pack_integration/config` and `pack_integration/kubejs` into your CurseForge instance and merge/replace.

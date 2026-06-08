@@ -3,9 +3,9 @@ loaderVersion="[47,)"
 license="All Rights Reserved"
 [[mods]]
 modId="mechwildmechs"
-version="0.7.0"
+version="0.8.0"
 displayName="Mechwild Mechs"
-description="First true custom beast-mech prototype for Mechwild Ascension. Adds a cockpit-entry beast-mech entity, repair interaction, frame movement tuning and active abilities."
+description="v0.8 visual cockpit pass. Adds a larger red/black raptor mech shell, higher cockpit camera feel, pilot hand hiding, and green first-person cockpit HUD overlay."
 [[dependencies.mechwildmechs]]
 modId="forge"
 mandatory=true
