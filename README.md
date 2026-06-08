@@ -1,6 +1,6 @@
 # Mechwild Mechs - Forge 1.20.1
 
-This repository contains the true custom mod prototype for **Mechwild Ascension v0.7**.
+This repository contains the true custom mod prototype for **Mechwild Ascension v0.7.1**.
 
 ## What GitHub will do
 
@@ -18,7 +18,7 @@ Every time you upload/push this repository, GitHub Actions will:
 3. Click the newest **Build Mechwild Mechs Mod** run.
 4. Wait until it shows a green tick.
 5. Scroll to **Artifacts**.
-6. Download **mechwild-mechs-v0.7-jar**.
+6. Download **mechwild-mechs-v0.7.1-jar**.
 7. Open the downloaded zip and copy the `.jar` into your CurseForge instance's `mods` folder.
 
 ## Pack files

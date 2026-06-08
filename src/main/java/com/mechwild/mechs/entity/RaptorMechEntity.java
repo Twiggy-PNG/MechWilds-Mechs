@@ -183,9 +183,11 @@ public class RaptorMechEntity extends Mob {
     }
 
     @Override
-    public Vec3 getPassengerRidingPosition(Entity passenger) {
+    protected void positionRider(Entity passenger, Entity.MoveFunction moveFunction) {
         // Lower the rider into the mech body so the interaction reads as cockpit entry, not sitting on top.
-        return new Vec3(0.0D, 0.35D, 0.0D);
+        if (this.hasPassenger(passenger)) {
+            moveFunction.accept(passenger, this.getX(), this.getY() + 0.35D, this.getZ());
+        }
     }
 
     @Override
