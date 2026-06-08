@@ -3,9 +3,9 @@ loaderVersion="[47,)"
 license="All Rights Reserved"
 [[mods]]
 modId="mechwildmechs"
-version="0.6.0"
+version="0.7.0"
 displayName="Mechwild Mechs"
-description="First true custom beast-mech prototype for Mechwild Ascension. Adds a rideable Raptor mech entity and Deployment Core."
+description="First true custom beast-mech prototype for Mechwild Ascension. Adds a cockpit-entry beast-mech entity, repair interaction, frame movement tuning and active abilities."
 [[dependencies.mechwildmechs]]
 modId="forge"
 mandatory=true

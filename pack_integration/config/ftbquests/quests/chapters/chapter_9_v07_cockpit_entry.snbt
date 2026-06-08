@@ -1,0 +1,25 @@
+{
+	id: "v07_cockpit_entry"
+	group: "mechwild"
+	order_index: 9
+	title: "v0.7 - Cockpit Entry"
+	icon: "mechwildmechs:mech_deployment_core"
+	quests: [
+		{
+			id: "enter_the_cockpit"
+			title: "Enter the Cockpit"
+			description: ["Deploy your mech with the Mech Deployment Core. Instead of sitting on top, the pilot is lowered into the mech body to sell the cockpit-entry fantasy.", "Use the Mech Deployment Core again while piloting to trigger your frame's first active ability."]
+			icon: "mechwildmechs:mech_deployment_core"
+			tasks: [{id: "has_core", type: "item", item: "mechwildmechs:mech_deployment_core"}]
+			rewards: [{id: "repair_reward", type: "item", item: "kubejs:mech_salvage", count: 12}]
+		},
+		{
+			id: "field_repairs"
+			title: "Field Repairs"
+			description: ["Right-click your deployed mech with Mech Salvage to repair its hull. Beetle frames are the strongest tank frames right now, while Raptor, Wolf and Hawk frames focus on movement abilities."]
+			icon: "kubejs:mech_salvage"
+			tasks: [{id: "has_salvage", type: "item", item: "kubejs:mech_salvage", count: 8}]
+			rewards: [{id: "servo_reward", type: "item", item: "kubejs:ancient_servo", count: 2}]
+		}
+	]
+}
